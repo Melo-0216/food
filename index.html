@@ -24,7 +24,6 @@
       transition: all 0.2s ease;
     }
 
-    /* 主容器，模拟页面卡片效果 */
     .app-container {
       width: 100%;
       max-width: 500px;
@@ -41,7 +40,6 @@
       border: 1px solid rgba(255, 215, 150, 0.5);
     }
 
-    /* 页面滑动区域 */
     .view {
       display: none;
       flex-direction: column;
@@ -68,7 +66,7 @@
       border-radius: 10px;
     }
 
-    /* ===== 首页欢迎词 ===== */
+    /* 首页 */
     .welcome-content {
       display: flex;
       flex-direction: column;
@@ -139,7 +137,7 @@
       transform: scale(0.97);
     }
 
-    /* ===== 详情页（产品列表） ===== */
+    /* 返回行 */
     .back-row {
       display: flex;
       align-items: center;
@@ -172,6 +170,39 @@
       margin-left: 0.3rem;
     }
 
+    /* 中间导航页按钮 */
+    .nav-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .nav-btn {
+      background: #fff3e6;
+      border: 2px solid #e5ae7c;
+      color: #7b4a2c;
+      padding: 1.2rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      background: #fffaf2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn:hover {
+      background: #fddbb8;
+      border-color: #c5682c;
+      transform: scale(1.02);
+    }
+
+    /* 产品列表 */
     .product-grid {
       display: flex;
       flex-direction: column;
@@ -206,9 +237,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3.5rem;
+      overflow: hidden;
       background: radial-gradient(circle at 30% 30%, #fff2e0, #fbc79e);
       box-shadow: inset 0 -4px 6px rgba(0,0,0,0.05);
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-info {
@@ -227,7 +264,32 @@
       margin-top: 0.3rem;
     }
 
-    /* ===== 产品详细介绍页 ===== */
+    /* 其他内容页 */
+    .other-content {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #7b4a2c;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .other-content h2 {
+      font-size: 2rem;
+      color: #a3431c;
+      margin-bottom: 1rem;
+    }
+
+    .other-content .info-card {
+      background: #fffbf5;
+      border-radius: 2rem;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border: 1px solid #f3d5b5;
+      text-align: left;
+      line-height: 1.8;
+    }
+
+    /* 产品详情页 */
     .detail-header {
       display: flex;
       align-items: center;
@@ -236,13 +298,19 @@
     }
 
     .detail-icon {
-      width: 70px;      
-      height: 70px;        
-      overflow: hidden; 
-      font-size: 3.5rem;
+      width: 70px;
+      height: 70px;
+      overflow: hidden;
       background: #fbe6d0;
       border-radius: 2rem;
       padding: 0.5rem;
+    }
+
+    .detail-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1.5rem;
     }
 
     .detail-name {
@@ -301,10 +369,6 @@
       transition: 0.2s;
     }
 
-    .detail-content-box p {
-      margin: 0;
-    }
-
     .extra-note {
       margin-top: 1rem;
       font-style: italic;
@@ -313,59 +377,100 @@
       align-items: center;
       gap: 0.3rem;
     }
-
-    hr {
-      border: 0.5px solid #edd3bb;
-      margin: 1rem 0 0.5rem;
-    }
   </style>
 </head>
 <body>
 <div class="app-container" id="appContainer">
-  <!-- 首页视图 -->
+  <!-- 首页 -->
   <div id="homeView" class="view active">
     <div class="welcome-content">
       <div class="welcome-icon">✨</div>
       <h1>琦香缘</h1>
       <div class="welcome-sub">宣传语</div>
       <button class="enter-btn" id="enterDetailBtn">
-        <span> 进入详情</span>
+        <span>进入详情</span>
       </button>
       <div style="font-size: 0.9rem; color: #bc7a5c; margin-top: 0.2rem;">点击开启美食之旅</div>
     </div>
   </div>
 
-  <!-- 详情页视图（多个产品图片/卡片） -->
+  <!-- 导航中间页 -->
+  <div id="navView" class="view">
+    <div class="back-row">
+      <button class="back-btn" id="backToHomeFromNavBtn">← 返回</button>
+      <span class="section-title">探索琦香缘</span>
+    </div>
+    <div class="nav-grid">
+      <button class="nav-btn" id="toClassBtn">
+        <span>🍡</span> 我们的产品
+      </button>
+      <button class="nav-btn" id="toOtherPageABtn">
+        <span>📖</span> 品牌故事
+      </button>
+      <button class="nav-btn" id="toOtherPageBBtn">
+        <span>📍</span> 联系我们
+      </button>
+    </div>
+  </div>
+
+  <!-- 分类选择页 -->
+<div id="classView" class="view">
+  <div class="back-row">
+    <button class="back-btn" id="backToNavFromClassBtn">← 返回</button>
+    <span class="section-title">选择分类</span>
+  </div>
+  <div class="nav-grid" id="categoryButtons"></div>
+</div>
+
+  <!-- 产品列表页 -->
   <div id="listView" class="view">
     <div class="back-row">
-      <button class="back-btn" id="backToHomeBtn">← 返回</button>
-      <span class="section-title">我们的菜品</span>
+      <button class="back-btn" id="backToNavBtn">← 返回</button>
+      <span class="section-title">我们的产品</span>
     </div>
-  <!-- 搜索框 -->
-<div style="margin: 1rem 0 1.2rem;">
-  <input 
-    type="text" 
-    id="searchInput" 
-    placeholder="🔍 搜索产品名称..." 
-    style="
-      width: 100%;
-      padding: 0.8rem 1.2rem;
-      border: 1px solid #e5ae7c;
-      border-radius: 2rem;
-      font-size: 1rem;
-      background: #fffbf5;
-      color: #7b4a2c;
-      outline: none;
-      transition: 0.2s;
-    "
-    onfocus="this.style.borderColor='#c2552c'"
-    onblur="this.style.borderColor='#e5ae7c'"
-  >
-</div>
+    <div style="margin: 1rem 0 1.2rem;">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="🔍 搜索产品..." 
+        style="width:100%; padding:0.8rem 1.2rem; border:1px solid #e5ae7c; border-radius:2rem; font-size:1rem; background:#fffbf5; color:#7b4a2c; outline:none;"
+      >
+    </div>
     <div class="product-grid" id="productGrid"></div>
   </div>
 
-  <!-- 产品详细介绍视图 -->
+  <!-- 其他内容页A - 品牌故事 -->
+  <div id="otherViewA" class="view">
+    <div class="back-row">
+      <button class="back-btn" id="backToNavFromABtn">← 返回</button>
+      <span class="section-title">品牌故事</span>
+    </div>
+    <div class="other-content">
+      <h2>📖 琦香缘的故事</h2>
+      <div class="info-card">
+        <p>这里放品牌故事内容。</p>
+        <p>可以有多段文字，介绍品牌起源、理念等。</p>
+        <p>替换成您的真实内容即可。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 其他内容页B - 联系我们 -->
+  <div id="otherViewB" class="view">
+    <div class="back-row">
+      <button class="back-btn" id="backToNavFromBBtn">← 返回</button>
+      <span class="section-title">联系我们</span>
+    </div>
+    <div class="other-content">
+      <h2>📍 找到我们</h2>
+      <div class="info-card">
+        <p>📞 电话：138-xxxx-xxxx</p>
+        <p>📍 地址：XX市XX区XX路XX号</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 产品详情页 -->
   <div id="detailView" class="view">
     <div class="back-row">
       <button class="back-btn" id="backToListBtn">← 返回</button>
@@ -375,156 +480,121 @@
       <span class="detail-icon" id="detailEmoji">✨</span>
       <span class="detail-name" id="detailProductName">产品详情</span>
     </div>
-    <!-- 原料、做法等按钮 -->
     <div class="button-group" id="tabButtonGroup"></div>
-    <div class="detail-content-box" id="detailContentText">
-      请点击上方按钮查看介绍
-    </div>
-    <div class="extra-note">
-      <span>✨</span> 纯天然·无添加
-    </div>
+    <div class="detail-content-box" id="detailContentText">请点击上方按钮查看介绍</div>
+    <div class="extra-note"><span>✨</span> 纯天然·无添加</div>
   </div>
 </div>
 
 <script>
   (function() {
-    // ----- 产品数据定义 -----
     const products = [
-      {
-        id: 1,
-        name: '产品1',
-        img: 'https://example.com/产品1.jpg',
-        desc: '特色',
-        details: {
-          '原料': '原料描述',
-          '做法': '第一行\n第二行\n第三行\n第四行',
-          '口感': '口感描述',
-          '适合人群': '举例'
-        }
-      },
-      {
-        id: 2,
-        name: '产品2',
-        img: 'https://example.com/产品2.jpg',
-        desc: '特色',
-        details: {
-          '原料': '原料描述',
-          '做法': '第一行\n第二行\n第三行\n第四行',
-          '口感': '口感描述',
-          '适合人群': '举例'
-        }
-      },
-      {
-        id: 3,
-        name: '产品3',
-        img: 'https://example.com/产品3.jpg',
-        desc: '特色',
-        details: {
-          '原料': '原料描述',
-          '做法': '第一行\n第二行\n第三行\n第四行',
-          '口感': '口感描述',
-          '适合人群': '举例'
-        }
-      },
-      {
-        id: 4,
-        name: '产品4',
-        img: 'https://example.com/产品4.jpg',
-        desc: '特色',
-        details: {
-          '原料': '原料描述',
-          '做法': '第一行\n第二行\n第三行\n第四行',
-          '口感': '口感描述',
-          '适合人群': '举例'
-        }
-      },
-      {
-        id: 5,
-        name: '产品5',
-        img: 'https://example.com/产品5.jpg',
-        desc: '特色',
-        details: {
-          '原料': '原料描述',
-          '做法': '第一行\n第二行\n第三行\n第四行',
-          '口感': '口感描述',
-          '适合人群': '举例'
-        }
-      },
-      {
-        id: 6,
-        name: '产品6',
-        img: 'https://example.com/产品6.jpg',
-        desc: '特色',
-        details: {
-          '原料': '原料描述',
-          '做法': '第一行\n第二行\n第三行\n第四行',
-          '口感': '口感描述',
-          '适合人群': '举例'
-        }
-      }
+      { id: 1, 
+      name: '产品1', 
+      category: '类别A',
+      img: 'https://example.com/1.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 2,
+      name: '产品2', 
+      category: '类别A',
+      img: 'https://example.com/2.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 3,                                              
+      name: '产品3', 
+      category: '类别B',
+      img: 'https://example.com/3.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 4, 
+      name: '产品4', 
+      category: '类别B',
+      img: 'https://example.com/4.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 5, 
+      name: '产品5', 
+      category: '类别C',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    }
     ];
 
     let currentProductId = 1;
-
+    let currentCategory = null;
+  
     const homeView = document.getElementById('homeView');
+    const navView = document.getElementById('navView');
+    const classView = document.getElementById('classView');
     const listView = document.getElementById('listView');
+    const otherViewA = document.getElementById('otherViewA');
+    const otherViewB = document.getElementById('otherViewB');
     const detailView = document.getElementById('detailView');
-    
-    const enterDetailBtn = document.getElementById('enterDetailBtn');
-    const backToHomeBtn = document.getElementById('backToHomeBtn');
-    const backToListBtn = document.getElementById('backToListBtn');
-    
-    const productGrid = document.getElementById('productGrid');
-    const detailEmoji = document.getElementById('detailEmoji');
-    const detailProductName = document.getElementById('detailProductName');
-    const tabButtonGroup = document.getElementById('tabButtonGroup');
-    const detailContentText = document.getElementById('detailContentText');
-    const searchInput = document.getElementById('searchInput');
 
     function showView(viewElement) {
-      homeView.classList.remove('active');
-      listView.classList.remove('active');
-      detailView.classList.remove('active');
+      [homeView, navView, classView, listView, otherViewA, otherViewB, detailView].forEach(v => v.classList.remove('active'));
       viewElement.classList.add('active');
     }
 
-    // 渲染产品列表（支持搜索筛选）
+    // 渲染分类按钮
+    function renderCategoryButtons() {
+      const container = document.getElementById('categoryButtons');
+      if (!container) return;
+      const categories = [...new Set(products.map(p => p.category))];
+      container.innerHTML = '';
+
+      const allBtn = document.createElement('button');
+      allBtn.className = 'nav-btn';
+      allBtn.innerHTML = '<span>🌟</span> 全部产品';
+      allBtn.addEventListener('click', () => {
+        currentCategory = null;
+        renderProductList();
+        showView(listView);
+      });
+      container.appendChild(allBtn);
+
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'nav-btn';
+        btn.innerHTML = `<span>📌</span> ${cat}`;
+        btn.addEventListener('click', () => {
+          currentCategory = cat;
+          renderProductList();
+          showView(listView);
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    // 渲染产品列表（支持分类筛选+搜索）
     function renderProductList(filterText = '') {
+      const productGrid = document.getElementById('productGrid');
       if (!productGrid) return;
       productGrid.innerHTML = '';
-      
-      const filteredProducts = products.filter(product => {
+      const filtered = products.filter(p => {
+        if (currentCategory && p.category !== currentCategory) return false;
         if (!filterText) return true;
-        return product.name.includes(filterText) || product.desc.includes(filterText);
+        return p.name.includes(filterText) || p.desc.includes(filterText);
       });
-      
-      if (filteredProducts.length === 0) {
-        productGrid.innerHTML = `
-          <div style="text-align:center; padding:2rem; color:#bf7a54; font-size:1.1rem;">
-            😕 没有找到相关产品
-          </div>
-        `;
+      if (filtered.length === 0) {
+        productGrid.innerHTML = '<div style="text-align:center;padding:2rem;color:#bf7a54;">😕 没有找到相关产品</div>';
         return;
       }
-      
-      filteredProducts.forEach(product => {
+      filtered.forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
-        card.setAttribute('data-id', product.id);
         card.innerHTML = `
-          <div class="product-img">
-             <img src="${product.img}" style="width:100%; height:100%; object-fit:cover; border-radius:1.8rem;">
-          </div>
-             <div class="product-info">
-            <div class="product-name">${product.name}</div>
-            <div class="product-desc">${product.desc}</div>
-          </div>
-          <div style="font-size:1.5rem; color:#c2845c;">›</div>
+          <div class="product-img"><img src="${product.img}" alt="${product.name}"></div>
+          <div class="product-info"><div class="product-name">${product.name}</div><div class="product-desc">${product.desc}</div></div>
+          <div style="font-size:1.5rem;color:#c2845c;">›</div>
         `;
-        card.addEventListener('click', (e) => {
-          const productId = parseInt(card.getAttribute('data-id'), 10);
-          openProductDetail(productId);
-        });
+        card.addEventListener('click', () => openProductDetail(product.id));
         productGrid.appendChild(card);
       });
     }
@@ -537,71 +607,60 @@
       const product = getProductById(productId);
       if (!product) return;
       currentProductId = productId;
-      
-      detailEmoji.innerHTML = `<img src="${product.img}" style="width:100%; height:100%; object-fit:cover; border-radius:2rem;">`;
-      detailProductName.textContent = product.name;
-      
+      document.getElementById('detailEmoji').innerHTML = `<img src="${product.img}" alt="${product.name}">`;
+      document.getElementById('detailProductName').textContent = product.name;
       renderDetailTabs(product);
-      detailContentText.textContent = '请点击上方按钮查看详细介绍';
-      
+      document.getElementById('detailContentText').textContent = '请点击上方按钮查看详细介绍';
       showView(detailView);
     }
 
     function renderDetailTabs(product) {
-      if (!tabButtonGroup) return;
-      tabButtonGroup.innerHTML = '';
-      const detailKeys = Object.keys(product.details);
-      if (detailKeys.length === 0) {
-        tabButtonGroup.innerHTML = '<span style="color:#7b4a2c;">暂无详细介绍</span>';
-        detailContentText.textContent = '暂无内容';
-        return;
-      }
-      
-      detailKeys.forEach(key => {
+      const group = document.getElementById('tabButtonGroup');
+      if (!group) return;
+      group.innerHTML = '';
+      Object.keys(product.details).forEach(key => {
         const btn = document.createElement('button');
         btn.className = 'tab-btn';
         btn.textContent = key;
-        btn.setAttribute('data-tab-key', key);
-        btn.addEventListener('click', function(e) {
-          document.querySelectorAll('#tabButtonGroup .tab-btn').forEach(b => b.classList.remove('active'));
+        btn.addEventListener('click', function() {
+          group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          const content = product.details[key] || '暂无详细介绍';
-          detailContentText.textContent = content;
+          document.getElementById('detailContentText').textContent = product.details[key] || '暂无';
         });
-        tabButtonGroup.appendChild(btn);
+        group.appendChild(btn);
       });
     }
 
-    function goBackToList() {
-      showView(listView);
-    }
-
-    // ===== 事件绑定 =====
-    
-    // 搜索框实时筛选
+    // 搜索
+    const searchInput = document.getElementById('searchInput');
     if (searchInput) {
-      searchInput.addEventListener('input', function(e) {
-        renderProductList(e.target.value);
-      });
+      searchInput.addEventListener('input', e => renderProductList(e.target.value));
     }
 
-    enterDetailBtn.addEventListener('click', () => {
-      renderProductList();
-      showView(listView);
+    // 事件绑定
+    document.getElementById('enterDetailBtn').addEventListener('click', () => showView(navView));
+    document.getElementById('backToHomeFromNavBtn').addEventListener('click', () => showView(homeView));
+
+    // 导航 → 分类页
+    document.getElementById('toClassBtn').addEventListener('click', () => {
+      renderCategoryButtons();
+      showView(classView);
     });
 
-    backToHomeBtn.addEventListener('click', () => {
-      showView(homeView);
-    });
+    document.getElementById('toOtherPageABtn').addEventListener('click', () => showView(otherViewA));
+    document.getElementById('toOtherPageBBtn').addEventListener('click', () => showView(otherViewB));
 
-    backToListBtn.addEventListener('click', () => {
-      goBackToList();
-    });
+    // 分类页 → 导航
+    document.getElementById('backToNavFromClassBtn').addEventListener('click', () => showView(navView));
 
-    // 初始加载
+    // 产品列表 → 分类页
+    document.getElementById('backToNavBtn').addEventListener('click', () => showView(classView));
+
+    document.getElementById('backToNavFromABtn').addEventListener('click', () => showView(navView));
+    document.getElementById('backToNavFromBBtn').addEventListener('click', () => showView(navView));
+    document.getElementById('backToListBtn').addEventListener('click', () => showView(listView));
+
     renderProductList();
-
-    console.log('美食即将到来！点击首页按钮进入美食世界。');
   })();
 </script>
 </body>
