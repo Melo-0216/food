@@ -405,7 +405,7 @@
         <span>🍡</span> 我们的产品
       </button>
       <button class="nav-btn" id="toOtherPageABtn">
-        <span>📖</span> 品牌故事
+        <span>📖</span> 为什么选我们
       </button>
       <button class="nav-btn" id="toOtherPageBBtn">
         <span>📍</span> 联系我们
@@ -439,18 +439,20 @@
     <div class="product-grid" id="productGrid"></div>
   </div>
 
-  <!-- 其他内容页A - 品牌故事 -->
+  <!-- 其他内容页A - 为什么选我们 -->
   <div id="otherViewA" class="view">
     <div class="back-row">
       <button class="back-btn" id="backToNavFromABtn">← 返回</button>
-      <span class="section-title">品牌故事</span>
+      <span class="section-title">为什么选我们</span>
     </div>
     <div class="other-content">
-      <h2>📖 琦香缘的故事</h2>
+      <h2>📖 因为我们选用真材实料</h2>
       <div class="info-card">
-        <p>这里放品牌故事内容。</p>
-        <p>可以有多段文字，介绍品牌起源、理念等。</p>
-        <p>替换成您的真实内容即可。</p>
+        <img src="https://melo-0216.github.io/food/images/门店照片.jpg" 
+             style="width:100%; border-radius:1rem; margin-bottom:1rem;">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
       </div>
     </div>
   </div>
@@ -464,7 +466,7 @@
     <div class="other-content">
       <h2>📍 找到我们</h2>
       <div class="info-card">
-        <p>📞 电话：138-xxxx-xxxx</p>
+        <p>📞 电话：xxxx-xxxx</p>
         <p>📍 地址：XX市XX区XX路XX号</p>
       </div>
     </div>
@@ -490,36 +492,120 @@
   (function() {
     const products = [
       { id: 1, 
-      name: '产品1', 
-      category: '类别A',
+      name: '牛杂汤', 
+      category: '汤类',
       img: 'https://example.com/1.jpg', 
       desc: '特色描述', 
       details: { '原料': '...', '做法': '...', '口感': '...' } 
     },
       { id: 2,
-      name: '产品2', 
-      category: '类别A',
+      name: '拆骨肉', 
+      category: '汤类',
       img: 'https://example.com/2.jpg', 
       desc: '特色描述', 
       details: { '原料': '...', '做法': '...', '口感': '...' } 
     },
       { id: 3,                                              
-      name: '产品3', 
-      category: '类别B',
+      name: '肉加肚', 
+      category: '汤类',
       img: 'https://example.com/3.jpg', 
       desc: '特色描述', 
       details: { '原料': '...', '做法': '...', '口感': '...' } 
     },
       { id: 4, 
-      name: '产品4', 
-      category: '类别B',
+      name: '满碗肉', 
+      category: '汤类',
       img: 'https://example.com/4.jpg', 
       desc: '特色描述', 
       details: { '原料': '...', '做法': '...', '口感': '...' } 
     },
       { id: 5, 
-      name: '产品5', 
-      category: '类别C',
+      name: '精品全牛', 
+      category: '汤类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+        { id: 6, 
+      name: '炸酱拌面', 
+      category: '面类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 7, 
+      name: '葱油拌面', 
+      category: '面类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 8, 
+      name: '麻辣牛肉面', 
+      category: '面类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 9, 
+      name: '牛大骨小面', 
+      category: '面类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 10, 
+      name: '生烫牛肉粉', 
+      category: '粉类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 11, 
+      name: '牛肉拌粉面', 
+      category: '粉类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 12, 
+      name: '炸酱拌粉面', 
+      category: '粉类',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 13, 
+      name: '贵妃千层饼', 
+      category: '主食',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 14, 
+      name: '牛肉烧饼', 
+      category: '主食',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 15, 
+      name: '五香芝麻饼', 
+      category: '主食',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 16, 
+      name: '酱香饼', 
+      category: '主食',
+      img: 'https://example.com/5.jpg', 
+      desc: '特色描述', 
+      details: { '原料': '...', '做法': '...', '口感': '...' } 
+    },
+      { id: 17, 
+      name: '鸡蛋饼', 
+      category: '主食',
       img: 'https://example.com/5.jpg', 
       desc: '特色描述', 
       details: { '原料': '...', '做法': '...', '口感': '...' } 
@@ -625,7 +711,7 @@
         btn.addEventListener('click', function() {
           group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
           this.classList.add('active');
-          document.getElementById('detailContentText').textContent = product.details[key] || '暂无';
+          document.getElementById('detailContentText').textContent = product.details[key] || '暂无您说的美食介绍';
         });
         group.appendChild(btn);
       });
